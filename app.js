@@ -44,7 +44,7 @@ let getBrowserPageClient = async function (browser, url) {
     let client = await browser.newPage();
     client.goto(workoutslinks[0]);
     console.log(client);
-    /*
+    
     let urls = await client.page.evaluate(() => {
         let arr = document.getElementsByClassName('history-item-content ng-scope');
         let hrefarr = [];
@@ -61,5 +61,5 @@ let getBrowserPageClient = async function (browser, url) {
     }
     fs.writeFile('workoutslinks.json', JSON.stringify(workoutslinks), () => { });
     browser.disconnect();
-    console.log(workoutslinks.length);*/
+    console.log(workoutslinks.length);
 })()
