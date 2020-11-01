@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 const fetch = require('node-fetch');
+const fs = require('fs');
 
+let workoutslinks = require('./workoutslinks.json');
+console.log(workoutslinks);
 //Get content of an opened page with specified url
 let getBrowserPageClient = async function (browser, url) {
     //If url is specified, try to find page with url and return the client. If page with url wasn't found, return null
@@ -48,5 +51,12 @@ let getBrowserPageClient = async function (browser, url) {
         return hrefarr;
     });
 
-    console.log(urls);
+    for(let i = 0; i < urls.length; i++){
+        if(!workoutslinks.includes(urls[i])){
+            workoutslinks.push(urls[i]);
+        }
+    }
+    fs.writeFile('workoutslinks.json', JSON.stringify(workoutslinks), () => { });
+    browser.disconnect();
+    console.log(workoutslinks.length);
 })()
